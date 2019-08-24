@@ -1,0 +1,30 @@
+.news-card {
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.news-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.news-card h4 {
+  margin-top: 15px;
+}
+
+.news-card h4,
+.news-card p {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.news-card p {
+  font-size: 0.8em;
+}
+
+.news-card .btn {
+  display: block;
+  margin: 0 20px 10px;
+}

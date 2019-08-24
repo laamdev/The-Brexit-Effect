@@ -1,0 +1,142 @@
+﻿[
+  {
+    "store": "Money Exchange Legazpi",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotham.jpg/240px-Above_Gotham.jpg",
+    "area": "Legazpi",
+    "latitude": 40.3897555,
+    "longitude": -3.6969138
+  },
+  {
+    "store": "Los Angeles",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/57/LA_Skyline_Mountains2.jpg/240px-LA_Skyline_Mountains2.jpg",
+    "area": "California",
+    "latitude": 34.0194,
+    "longitude": -118.4108
+  },
+  {
+    "store": "Chicago",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/8/85/2008-06-10_3000x1000_chicago_skyline.jpg/240px-2008-06-10_3000x1000_chicago_skyline.jpg",
+    "area": "Illinois",
+    "latitude": 41.8376,
+    "longitude": -87.6818
+  },
+  {
+    "store": "Houston",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Aerial_views_of_the_Houston%2C_Texas%2C_28005u.jpg/240px-Aerial_views_of_the_Houston%2C_Texas%2C_28005u.jpg",
+    "area": "Texas",
+    "latitude": 29.7805,
+    "longitude": -95.3863
+  },
+  {
+    "store": "Phoenix",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Downtown_Phoenix_Aerial_Looking_Northeast.jpg/207px-Downtown_Phoenix_Aerial_Looking_Northeast.jpg",
+    "area": "Arizona",
+    "latitude": 33.5722,
+    "longitude": -112.088
+  },
+  {
+    "store": "Philadelphia",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Philly_skyline.jpg/240px-Philly_skyline.jpg",
+    "area": "Pennsylvania",
+    "latitude": 40.0094,
+    "longitude": -75.1333
+  },
+  {
+    "store": "San Antonio",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Downtown_San_Antonio_View.JPG/240px-Downtown_San_Antonio_View.JPG",
+    "area": "Texas",
+    "latitude": 29.4724,
+    "longitude": -98.5251
+  },
+  {
+    "store": "San Diego",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/53/US_Navy_110604-N-NS602-574_Navy_and_Marine_Corps_personnel%2C_along_with_community_leaders_from_the_greater_San_Diego_area_come_together_to_commemora.jpg/240px-US_Navy_110604-N-NS602-574_Navy_and_Marine_Corps_personnel%2C_along_with_community_leaders_from_the_greater_San_Diego_area_come_together_to_commemora.jpg",
+    "area": "California",
+    "latitude": 32.8153,
+    "longitude": -117.135
+  },
+  {
+    "store": "Dallas",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dallas_skyline_daytime.jpg/240px-Dallas_skyline_daytime.jpg",
+    "area": "Texas",
+    "latitude": 32.7757,
+    "longitude": -96.7967
+  },
+  {
+    "store": "San Jose",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Downtown_San_Jose_skyline.PNG/240px-Downtown_San_Jose_skyline.PNG",
+    "area": "California",
+    "latitude": 37.2969,
+    "longitude": -121.8193
+  },
+  {
+    "store": "Austin",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Austin2012-12-01.JPG/240px-Austin2012-12-01.JPG",
+    "area": "Texas",
+    "latitude": 30.3072,
+    "longitude": -97.756
+  },
+  {
+    "store": "Jacksonville",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg/240px-Skyline_of_Jacksonville_FL%2C_South_view_20160706_1.jpg",
+    "area": "Florida",
+    "latitude": 30.337,
+    "longitude": -81.6613
+  },
+  {
+    "store": "San Francisco",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/San_Francisco_skyline_from_Coit_Tower.jpg/240px-San_Francisco_skyline_from_Coit_Tower.jpg",
+    "area": "California",
+    "latitude": 37.7751,
+    "longitude": -122.4193
+  },
+  {
+    "store": "Columbus",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Columbus-ohio-skyline-panorama.jpg/240px-Columbus-ohio-skyline-panorama.jpg",
+    "area": "Ohio",
+    "latitude": 39.9848,
+    "longitude": -82.985
+  },
+  {
+    "store": "Indianapolis",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Downtown_indy_from_parking_garage_zoom.JPG/213px-Downtown_indy_from_parking_garage_zoom.JPG",
+    "area": "Indiana",
+    "latitude": 39.7767,
+    "longitude": -86.1459
+  },
+  {
+    "store": "Fort Worth",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/d/db/FortWorthTexasSkylineW.jpg/240px-FortWorthTexasSkylineW.jpg",
+    "area": "Texas",
+    "latitude": 32.7795,
+    "longitude": -97.3463
+  },
+  {
+    "store": "Charlotte",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Charlotte_skyline45647.jpg/222px-Charlotte_skyline45647.jpg",
+    "area": "North Carolina",
+    "latitude": 35.2087,
+    "longitude": -80.8307
+  },
+  {
+    "store": "Seattle",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/36/SeattleI5Skyline.jpg/240px-SeattleI5Skyline.jpg",
+    "area": "Washington",
+    "latitude": 47.6205,
+    "longitude": -122.3509
+  },
+  {
+    "store": "Denver",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/DenverCP.JPG/240px-DenverCP.JPG",
+    "area": "Colorado",
+    "latitude": 39.7618,
+    "longitude": -104.8806
+  },
+  {
+    "store": "El Paso",
+    "image": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Downtown_El_Paso_at_sunset.jpeg/240px-Downtown_El_Paso_at_sunset.jpeg",
+    "area": "Texas",
+    "latitude": 31.8484,
+    "longitude": -106.427
+  }
+]
