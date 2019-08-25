@@ -1,15 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const NewsCardTicker = ({ title }) => {
+  return (
+    <>
+      <small>&emsp;{title}&emsp;</small>
+    </>
+  );
+};
 
-    return (
-        
-            <>
-
-            <p>&emsp;{title}&emsp;</p> 
-    
-            </>
-    )
-}
-
-export default NewsCardTicker
+export default NewsCardTicker;

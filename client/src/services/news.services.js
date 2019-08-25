@@ -1,15 +1,15 @@
 import axios from "axios";
 
 export default class Services {
-    constructor() {
-        this.service = axios.create({
-            baseURL: "https://newsapi.org/v2/"
-        });
-    }
+  constructor() {
+    this.service = axios.create({
+      baseURL: "https://newsapi.org/v2/"
+    });
+  }
 
-    //!ENDPOINTS FOR API CALLS
-    getLatestNews = () => this.service.get(`top-headlines?q=brexit&country=gb&apiKey=a8d0b458b1b94d5786e4de567d820f3d` , ) 
+  //!ENDPOINTS FOR API CALLS
+  getLatestNews = () => this.service.get(`top-headlines?q=brexit&country=gb&apiKey=041cff11d05448a3a8506f81a8893422`);
 
-    //getOneCoaster = id => this.service.get(`getOneCoaster/${id}`);
-    //postCoaster = theNewCoaster => this.service.post(`postCoaster`, theNewCoaster);
+  //getOneCoaster = id => this.service.get(`getOneCoaster/${id}`);
+  //postCoaster = theNewCoaster => this.service.post(`postCoaster`, theNewCoaster);
 }

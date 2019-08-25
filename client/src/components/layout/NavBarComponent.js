@@ -1,0 +1,174 @@
+import React, { Component } from 'react'
+
+import { Link } from 'react-router-dom';
+
+
+import Login from "../auth/Login"
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
+
+import Modal from 'react-modal'
+
+import AuthServices from '../../services/auth.services'
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+Modal.setAppElement('#root')
+
+
+class NavBarComponent extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.authServices = new AuthServices()
+
+        this.toggle = this.toggle.bind(this)
+
+        this.state = { 
+          modalIsOpen: false,
+          loggedInUser: null
+        }
+
+        this.openModal = this.openModal.bind(this)
+
+        this.closeModal = this.closeModal.bind(this)
+    }
+
+    toggle () {
+      this.setState({
+        isOpen: !this.state.isOpen
+      })
+    } 
+
+    logout = () => {
+        this.authServices.logout()
+            .then(x => {
+                this.props.setUser(null)
+            })
+            .catch(err => console.log(err))
+    }
+
+    openModal = () => {
+      this.setState({ modalIsOpen: true })
+    }
+
+    closeModal = () => {
+        this.setState({ modalIsOpen: false })
+    }
+
+
+    render() {
+
+        // const greetings = this.props.userInSession ? this.props.userInSession.data.username : 'invitado'
+        // const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null
+
+
+        if (this.props.userInSession) {
+
+            return (
+        <>
+          
+          <Navbar color="light" light expand="md">
+
+          <NavbarBrand tag={Link} to="/">The Brexit Effect</NavbarBrand>
+
+          <NavbarToggler onClick={this.toggle} />
+
+          <Collapse isOpen={this.state.isOpen} navbar>
+
+            <Nav className="ml-auto" navbar>
+
+              <NavItem>
+              <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
+              </NavItem>
+
+              <NavItem>
+              <NavLink tag={Link} to="/profile">Profile</NavLink>
+              </NavItem>
+
+              <NavItem>
+                <NavLink tag={Link} to="/" onClick={this.logout}>Logout</NavLink>
+              </NavItem>
+
+            </Nav>
+
+          </Collapse>
+
+          </Navbar>
+        </>
+
+
+            )
+
+        } else {
+            return (
+              <>
+          
+              <Navbar color="light" light expand="md">
+    
+              <NavbarBrand href="/">The Brexit Effect</NavbarBrand>
+    
+              <NavbarToggler onClick={this.toggle} />
+    
+              <Collapse isOpen={this.state.isOpen} navbar>
+    
+                <Nav className="ml-auto" navbar>
+
+                <NavItem>
+              <NavLink onClick= {this.openModal}>Login
+
+              <Modal 
+                          isOpen={this.state.modalIsOpen} 
+                          onRequestClose={this.closeModal} 
+                          style={customStyles}
+                          contentLabel="Login"
+                          shouldCloseOnOverlayClick={false}
+                          >
+              
+              <Login />
+
+                            </Modal>
+
+              
+              </NavLink>
+              </NavItem>
+
+                
+                  
+    
+                </Nav>
+    
+              </Collapse>
+    
+              </Navbar>
+            </>
+    
+            )
+        }
+
+    }
+}
+export default NavBarComponent
+
+

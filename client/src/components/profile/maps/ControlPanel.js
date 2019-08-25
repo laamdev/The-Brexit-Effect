@@ -1,17 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
 const defaultContainer = ({ children }) => <div className="control-panel">{children}</div>;
 
 export default class ControlPanel extends PureComponent {
-    render() {
-        const Container = this.props.containerComponent || defaultContainer;
+  render() {
+    const Container = this.props.containerComponent || defaultContainer;
 
-        return (
-            <Container>
-
-                <h3>Currency Exchange </h3>
-               
-            </Container>
-        );
-    }
+    return <Container></Container>;
+  }
 }
