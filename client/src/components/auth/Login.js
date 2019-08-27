@@ -1,22 +1,6 @@
 
 import React, { Component } from 'react'
 import AuthServices from '../../services/auth.services'
-import Modal from 'react-modal';
-
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root')
 
 class Login extends Component {
 
@@ -47,8 +31,9 @@ class Login extends Component {
                     username: '',
                     password: ''
                 })
+                console.log(this.props)
                 this.props.setUser(theLoggedUser)
-                this.props.history.push('/dashboard')
+                // this.props.history.push('/dashboard')
             })
             .catch(err => console.log(err.response.data.message))
     }

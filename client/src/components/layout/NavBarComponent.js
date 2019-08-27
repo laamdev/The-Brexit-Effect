@@ -1,121 +1,80 @@
 import React, { Component } from 'react'
 
-import { Link } from 'react-router-dom';
+import LoginModal from './LoginModal'
 
+import SignUpModal from './SignUpModal'
 
-import Login from "../auth/Login"
-
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
-
-import Modal from 'react-modal'
+import { Navbar, Nav, Button, ButtonToolbar } from 'react-bootstrap';
 
 import AuthServices from '../../services/auth.services'
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
-Modal.setAppElement('#root')
 
 
 class NavBarComponent extends Component {
 
-    constructor(props) {
-        super(props)
+
+    constructor(props, context) {
+        super(props, context)
+
+        this.state = { 
+          loggedInUser: null,
+          smShow: false, 
+          lgShow: false
+        }
 
         this.authServices = new AuthServices()
 
-        this.toggle = this.toggle.bind(this)
-
-        this.state = { 
-          modalIsOpen: false,
-          loggedInUser: null
-        }
-
-        this.openModal = this.openModal.bind(this)
-
-        this.closeModal = this.closeModal.bind(this)
-    }
-
-    toggle () {
-      this.setState({
-        isOpen: !this.state.isOpen
-      })
-    } 
-
-    logout = () => {
-        this.authServices.logout()
-            .then(x => {
-                this.props.setUser(null)
-            })
-            .catch(err => console.log(err))
-    }
-
-    openModal = () => {
-      this.setState({ modalIsOpen: true })
-    }
-
-    closeModal = () => {
-        this.setState({ modalIsOpen: false })
+      }
+           
+        logout = () => {
+            this.authServices.logout()
+                .then(x => {
+                    this.props.setUser(null)
+                })
+                .catch(err => console.log(err))
     }
 
 
     render() {
 
-        // const greetings = this.props.userInSession ? this.props.userInSession.data.username : 'invitado'
-        // const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null
+      let smClose = () => this.setState({ smShow: false });
+      let lgClose = () => this.setState({ lgShow: false });
 
+      if (this.props.userInSession) {
 
-        if (this.props.userInSession) {
-
-            return (
+      return (
         <>
-          
-          <Navbar color="light" light expand="md">
+          <div>
+          <Navbar bg="light" expand="lg">
 
-          <NavbarBrand tag={Link} to="/">The Brexit Effect</NavbarBrand>
+          <Navbar.Brand href="/">The Brexit Effect</Navbar.Brand>
 
-          <NavbarToggler onClick={this.toggle} />
+          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Navbar.Collapse id="basic-navbar-nav">
 
-            <Nav className="ml-auto" navbar>
+          <Nav className="mr-auto">
 
-              <NavItem>
-              <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
-              </NavItem>
+          <Nav.Item>
 
-              <NavItem>
-              <NavLink tag={Link} to="/profile">Profile</NavLink>
-              </NavItem>
+              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
 
-              <NavItem>
-                <NavLink tag={Link} to="/" onClick={this.logout}>Logout</NavLink>
-              </NavItem>
+              </Nav.Item>
 
-            </Nav>
+              <Nav.Item>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+              </Nav.Item>
 
-          </Collapse>
+              <Nav.Item>
+
+              <Nav.Link href="/" onClick={this.logout}>Logout</Nav.Link>
+              </Nav.Item>
+
+          </Nav>
+
+          </Navbar.Collapse>
 
           </Navbar>
+          </div>
         </>
 
 
@@ -124,44 +83,46 @@ class NavBarComponent extends Component {
         } else {
             return (
               <>
-          
-              <Navbar color="light" light expand="md">
-    
-              <NavbarBrand href="/">The Brexit Effect</NavbarBrand>
-    
-              <NavbarToggler onClick={this.toggle} />
-    
-              <Collapse isOpen={this.state.isOpen} navbar>
-    
-                <Nav className="ml-auto" navbar>
-
-                <NavItem>
-              <NavLink onClick= {this.openModal}>Login
-
-              <Modal 
-                          isOpen={this.state.modalIsOpen} 
-                          onRequestClose={this.closeModal} 
-                          style={customStyles}
-                          contentLabel="Login"
-                          shouldCloseOnOverlayClick={false}
-                          >
               
-              <Login />
+              <div>
 
-                            </Modal>
+              <Navbar bg="light" expand="lg">
+    
+              <Navbar.Brand href="/">The Brexit Effect</Navbar.Brand>
+    
+              <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+    
+              <Navbar.Collapse id="basic-navbar-nav">
+    
+              <Nav className="mr-auto">
 
+              <Nav.Item>
+              <Nav.Link onClick={() => this.setState({ smShow: true})}>
+              Login    
+              </Nav.Link>          
+              </Nav.Item>
+
+              <Nav.Item>
+              <Nav.Link onClick={() => this.setState({ lgShow: true})}>
+              Signup    
+              </Nav.Link>          
+              </Nav.Item>
+
+
+
+              <LoginModal show={this.state.smShow} onHide={smClose} setUser={this.props.setUser} />
               
-              </NavLink>
-              </NavItem>
+              <SignUpModal show={this.state.lgShow} onHide={lgClose} setUser={this.props.setUser}/>
 
-                
-                  
+        
     
-                </Nav>
+              </Nav>
     
-              </Collapse>
+              </Navbar.Collapse>
     
               </Navbar>
+
+              </div>
             </>
     
             )

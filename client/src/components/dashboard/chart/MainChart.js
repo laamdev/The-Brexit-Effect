@@ -1,20 +1,25 @@
 import React, { Component } from "react";
-import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter } from "victory";
+import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter, VictoryTooltip } from "victory";
 import Services from "../../../services/currency.services";
+
+
 
 class MainChart extends Component {
   constructor() {
     super();
-    this.state = { res: [{ x: 0, y: "" }] };
+    this.state = { res: [{ x: 0, y: "" }], updatedToday: new Date().toISOString().slice(0,10) };
     this.services = new Services();
   }
+
 
   componentDidMount = () => this.renderHistorical();
 
   renderHistorical = () => {
+
     this.services
-      .getHistoricalCurrency()
+      .getHistoricalCurrency(this.state.updatedToday)
       .then(response => {
+
         const chartPairs = response.data.rates;
 
         // console.log(chartPairs);
@@ -54,9 +59,9 @@ class MainChart extends Component {
           yey.push({ x: new Date(sortedDates[i]), y: sortedMoney[i] });
         }
 
-        this.setState({ res: yey });
+        this.setState({ res: yey});
 
-        // console.log(this.state);
+        console.log(this.state.updatedToday);
       })
 
       .catch(err => console.log(err));
@@ -76,15 +81,53 @@ class MainChart extends Component {
         <VictoryChart
           width={1000}
           height={400}
+          maxDomain={{ y: 1 }}
           scale={{ x: "time" }}
           containerComponent={<VictoryZoomContainer responsive={false} zoomDimension="x" zoomDomain={this.state.zoomDomain} onZoomDomainChange={this.handleZoom.bind(this)} />}
         >
+
+
+      
+
           <VictoryLine
             style={{
-              data: { stroke: "tomato" }
+              data: { stroke: "tomato", strokeWidth: 2 }
             }}
             data={this.state.res}
           />
+
+          <VictoryScatter 
+            style={{data: {fill: 'green'}, labels: {fill: 'tomato'}}}
+            size={(datum, active) => active ? 3 : 1}
+            data={this.state.res} 
+            labels={(d) => `Rate: ${d.y} Date: ${d.x}`}
+            // events={[{
+            //   target: "data",
+            //   eventHandlers: {
+            //     onClick: () => {
+            //       return [
+            //         {
+            //           target: "data",
+            //           mutation: (props) => {
+            //             const fill = props.style && props.style.fill;
+            //             return fill === "black" ? null : { style: { fill: "black" } };
+            //           }
+            //         }, {
+            //           target: "labels",
+            //           mutation: (props) => {
+            //             return props.text === "clicked" ?
+            //               null : { text: "clicked" }; 
+            //                   }
+            //         }
+            //       ];
+            //     }
+            //   }
+            // }]}
+            labelComponent={<VictoryTooltip/>}
+            data={this.state.res}
+  
+          />
+
 
 
         </VictoryChart>
@@ -93,6 +136,7 @@ class MainChart extends Component {
           padding={{ top: 0, left: 50, right: 50, bottom: 30 }}
           width={1000}
           height={100}
+          maxDomain={{ y: 1 }}
           scale={{ x: "time" }}
           containerComponent={<VictoryBrushContainer responsive={false} brushDimension="x" brushDomain={this.state.selectedDomain} onBrushDomainChange={this.handleBrush.bind(this)} />}
         >

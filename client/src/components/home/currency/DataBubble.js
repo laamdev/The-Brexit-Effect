@@ -25,7 +25,7 @@ class DataBubble extends Component {
             width={400}
             height={400}
             padAngle={3}
-            data={[
+s            data={[
               { x: `EUR ${this.state.latestExchange.rates.EUR.toFixed(3)}`, y: this.state.latestExchange.rates.EUR },
 
               { x: `USD ${this.state.latestExchange.rates.USD.toFixed(3)}`, y: this.state.latestExchange.rates.USD },
@@ -38,8 +38,10 @@ class DataBubble extends Component {
             ]}
             innerRadius={90}
             labelRadius={110}
+            
             style={{ labels: { fontSize: 7, fill: "white" } }}
           />
+
           <VictoryLabel textAnchor="middle" style={{ fontSize: 20 }} x={200} y={200} text="The Brexit Effect" />
         </svg>
       );

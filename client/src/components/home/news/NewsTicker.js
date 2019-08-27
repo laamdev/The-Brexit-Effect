@@ -23,20 +23,25 @@ class NewsTicker extends Component {
         }
 
         render() {
-            return(
+            return  this.state.tickers.length !== 0 ? (
         
-                <Ticker speed={5}> 
+                <Ticker speed={5} mode="chain"> 
                 {() => (
                     <>
                             <div className="d-flex text-center">
-                                {this.state.tickers.map((tickers, idx) => <NewsCardTicker key={idx} {...tickers} />)}
+                                {this.state.tickers.slice(0, 3).map((tickers, idx) => <NewsCardTicker key={idx} {...tickers} />)}
                             </div>
                     </>
-                    )}
+                )}
+                                    </Ticker>
 
-        </Ticker>
-        )
+
+                    ) : (
+                        <p>Loading...</p>
+                    )
+                    }
+
+    
     }
-}
 
 export default NewsTicker

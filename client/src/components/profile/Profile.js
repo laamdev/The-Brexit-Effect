@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import MapContainer from "./maps/MapContainer";
 import AuthServices from "../../services/auth.services";
 import Converter from "./currency/Converter"
-
+import Container  from "react-bootstrap/Container"
 
 class Profile extends Component {
   constructor(props) {
@@ -16,11 +16,16 @@ class Profile extends Component {
 
       return (
         <>
+        <Container>
+
         <p>{this.props.userInSession.data.username}</p>
         <img src={this.props.userInSession.data.imageURL}></img>
         <Converter capital={this.props.userInSession.data.money}/>
 
         <MapContainer />
+
+        </Container>
+
         </>
          );
 

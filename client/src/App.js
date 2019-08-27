@@ -54,9 +54,12 @@ class App extends Component {
 
           <Switch>
             {/* <ProtectedRoute path="/profile" user={this.state.loggedInUser} component={Profile} /> */}
-            <Route path="/profile" exact render={match => <Profile {...match} setUser={this.setTheUser} userInSession={this.state.loggedInUser} />} />
+
+            <Route path="/profile" exact render={match => <Profile {...match} setUser={this.setTheUser} 
+            userInSession={this.state.loggedInUser} />} />
 
             <Route path="/" exact render={match => <Home {...match} setUser={this.setTheUser} />} />
+            
             <Route path="/dashboard" exact render={match => <Dashboard {...match} setUser={this.setTheUser} />} />
           </Switch>
         </>
@@ -67,9 +70,12 @@ class App extends Component {
           <NavBarComponent setUser={this.setTheUser} userInSession={this.state.loggedInUser} />
 
           <Switch>
-            <ProtectedRoute path="/profile" user={this.state.loggedInUser} component={Profile} />
+            {/* <ProtectedRoute path="/profile" user={this.state.loggedInUser} component={Profile} /> */}
+
             <Route path="/" exact render={match => <Home {...match} setUser={this.setTheUser} />} />
+
             <Route path="/login" exact render={match => <Login {...match} setUser={this.setTheUser} />} />
+            
             <Route path="/signup" exact render={match => <Signup {...match} setUser={this.setTheUser} />} />>
           </Switch>
         </>

@@ -3,7 +3,9 @@ import React from "react";
 const NewsCardTicker = ({ title }) => {
   return (
     <>
-      <small>&emsp;{title}&emsp;</small>
+    <div>
+    <small style={{ fontSize: 12}}>&emsp;{title}&emsp;</small>
+    </div>
     </>
   );
 };
