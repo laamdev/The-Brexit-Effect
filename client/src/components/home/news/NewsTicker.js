@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Ticker from 'react-ticker'
 import Services from '../../../services/news.services'
 import NewsCardTicker from '../news/NewsCardTicker'
+import "../../../styles/ticker.css";
 
 class NewsTicker extends Component {
 
@@ -25,13 +26,11 @@ class NewsTicker extends Component {
         render() {
             return  this.state.tickers.length !== 0 ? (
         
-                <Ticker speed={5} mode="chain"> 
+                <Ticker speed={5} mode="smooth"> 
                 {() => (
-                    <>
                             <div className="d-flex text-center">
-                                {this.state.tickers.slice(0, 3).map((tickers, idx) => <NewsCardTicker key={idx} {...tickers} />)}
+                                {this.state.tickers.map((tickers, idx) => <NewsCardTicker key={idx} {...tickers} />)}
                             </div>
-                    </>
                 )}
                                     </Ticker>
 

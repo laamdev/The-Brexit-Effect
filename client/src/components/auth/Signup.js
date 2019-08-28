@@ -58,7 +58,6 @@ class Signup extends Component {
 
         return (
             <div className="container">
-                <h1>Register User</h1>
                 <form onSubmit={this.handleFormSubmit}>
 
                     User: <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange} /> <br></br>

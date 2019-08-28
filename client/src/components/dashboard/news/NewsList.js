@@ -32,14 +32,14 @@ class NewsList extends Component {
 render() {
 
   return (
-    <Carousel>
+    <Carousel fade="true">
     
-    {this.state.news.map((article, idx) => (
-    <Carousel.Item>
-      <img
-        className="d-block w-100"
-        src={article.urlToImage}
-        alt="First slide"
+    {this.state.news.map((article) => (
+    <Carousel.Item key={article._id} className="carousel-item">
+      <img 
+        src={article.urlToImage}key
+        alt="News Slide"
+        className = "news-slide-images"
       />
       <Carousel.Caption>
         <h3>{article.title}</h3>

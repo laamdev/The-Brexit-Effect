@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter, VictoryTooltip } from "victory";
+import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter, VictoryTooltip, VictoryArea} from "victory";
 import Services from "../../../services/currency.services";
 
 
@@ -82,54 +82,54 @@ class MainChart extends Component {
           width={1000}
           height={400}
           maxDomain={{ y: 1 }}
+          minDomain={{ y: 0.7 }}
           scale={{ x: "time" }}
           containerComponent={<VictoryZoomContainer responsive={false} zoomDimension="x" zoomDomain={this.state.zoomDomain} onZoomDomainChange={this.handleZoom.bind(this)} />}
         >
 
-
       
 
-          <VictoryLine
+          <VictoryArea
             style={{
               data: { stroke: "tomato", strokeWidth: 2 }
             }}
             data={this.state.res}
           />
 
-          <VictoryScatter 
+
+
+          {/* <VictoryScatter 
             style={{data: {fill: 'green'}, labels: {fill: 'tomato'}}}
-            size={(datum, active) => active ? 3 : 1}
+            size={2}
             data={this.state.res} 
             labels={(d) => `Rate: ${d.y} Date: ${d.x}`}
-            // events={[{
-            //   target: "data",
-            //   eventHandlers: {
-            //     onClick: () => {
-            //       return [
-            //         {
-            //           target: "data",
-            //           mutation: (props) => {
-            //             const fill = props.style && props.style.fill;
-            //             return fill === "black" ? null : { style: { fill: "black" } };
-            //           }
-            //         }, {
-            //           target: "labels",
-            //           mutation: (props) => {
-            //             return props.text === "clicked" ?
-            //               null : { text: "clicked" }; 
-            //                   }
-            //         }
-            //       ];
-            //     }
-            //   }
-            // }]}
+            events={[{
+              target: "data",
+              eventHandlers: {
+                onClick: () => {
+                  return [
+                    {
+                      target: "data",
+                      mutation: (props) => {
+                        const fill = props.style && props.style.fill;
+                        return fill === "black" ? null : { style: { fill: "black" } };
+                      }
+                    }, {
+                      target: "labels",
+                      mutation: (props) => {
+                        return props.text === "clicked" ?
+                          null : { text: "clicked" }; 
+                              }
+                    }
+                  ];
+                }
+              }
+            }]}
             labelComponent={<VictoryTooltip/>}
             data={this.state.res}
   
           />
-
-
-
+ */}
         </VictoryChart>
 
         <VictoryChart
@@ -147,6 +147,7 @@ class MainChart extends Component {
             }}
             data={this.state.res}
           />
+
         </VictoryChart>
       </div>
     );

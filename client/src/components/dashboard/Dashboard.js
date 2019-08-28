@@ -1,14 +1,21 @@
 import React from 'react'
 import MainChart from "./chart/MainChart"
 import NewsList from './news/NewsList';
+import { Container, Row, Col } from 'react-bootstrap'
+
+import "../../styles/dashboard.css"
 
 const Dashboard = () => {
 
     return (
-        <div className="container">
-            <MainChart />
-            <NewsList />
-        </div>
+        <>
+        <Container >
+            <Row className="justify-content-center">
+                <MainChart className="main-chart" />
+                <NewsList />
+            </Row>  
+        </Container>
+        </>
     )
 }
 

@@ -1,17 +1,18 @@
 import React from "react";
 
-import "../../../styles/news-card.css";
 
 const NewsCard = ({ title, description, url, urlToImage }) => {
   return (
-    <div className="col-md-3">
+    <div>
       <article className="news-card">
-        <img src={urlToImage} alt={title} />
-        <h4>{title}</h4>
+        <img src={urlToImage} alt={title}></img>
+        <div className="news-text">
+        <p>{title}</p>
         <hr></hr>
         <a href={url} className="btn btn-sm btn-dark">
           Read more
         </a>
+        </div>
         <p>{description}</p>
       </article>
     </div>

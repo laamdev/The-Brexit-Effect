@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import LoginModal from './LoginModal'
 
 import SignUpModal from './SignUpModal'
 
-import { Navbar, Nav, Button, ButtonToolbar } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import AuthServices from '../../services/auth.services'
+
+import "../../styles/nav-bar.css";
 
 
 class NavBarComponent extends Component {
@@ -44,29 +48,29 @@ class NavBarComponent extends Component {
       return (
         <>
           <div>
-          <Navbar bg="light" expand="lg">
+          <Navbar  variant="dark" expand="lg">
 
-          <Navbar.Brand href="/">The Brexit Effect</Navbar.Brand>
+          <Navbar.Brand style={{ textDecoration: 'none', color: '#0d0d0d' }} href="/">The Brexit Effect</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 
           <Navbar.Collapse id="basic-navbar-nav">
 
-          <Nav className="mr-auto">
+          <Nav className="justify-content-end" style={{ width: "100%" }} >
 
-          <Nav.Item>
+          <Nav.Item style={{ textDecoration: 'none', color: '#0d0d0d' }} className="nav-item">
 
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+              <Link style={{ textDecoration: 'none', color: '#0d0d0d' }} to="/dashboard">Dashboard</Link>
 
               </Nav.Item>
 
-              <Nav.Item>
-              <Nav.Link href="/profile">Profile</Nav.Link>
+              <Nav.Item className="nav-item">
+              <Link style={{ textDecoration: 'none', color: '#0d0d0d' }} to="/profile">Profile</Link>
               </Nav.Item>
 
-              <Nav.Item>
+              <Nav.Item className="nav-item">
 
-              <Nav.Link href="/" onClick={this.logout}>Logout</Nav.Link>
+              <Link style={{ textDecoration: 'none', color: '#0d0d0d' }} to="/" onClick={this.logout}>Logout</Link>
               </Nav.Item>
 
           </Nav>
@@ -86,26 +90,26 @@ class NavBarComponent extends Component {
               
               <div>
 
-              <Navbar bg="light" expand="lg">
+              <Navbar variant="dark"  expand="lg">
     
-              <Navbar.Brand href="/">The Brexit Effect</Navbar.Brand>
+              <Navbar.Brand style={{ textDecoration: 'none', color: '#0d0d0d' }} href="/">The Brexit Effect</Navbar.Brand>
     
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
     
               <Navbar.Collapse id="basic-navbar-nav">
     
-              <Nav className="mr-auto">
+              <Nav className="justify-content-end" style={{ width: "100%" }}>
 
-              <Nav.Item>
-              <Nav.Link onClick={() => this.setState({ smShow: true})}>
+              <Nav.Item className="nav-item">
+              <Link style={{ textDecoration: 'none', color: '#0d0d0d' }} onClick={() => this.setState({ smShow: true})}>
               Login    
-              </Nav.Link>          
+              </Link>          
               </Nav.Item>
 
-              <Nav.Item>
-              <Nav.Link onClick={() => this.setState({ lgShow: true})}>
+              <Nav.Item className="nav-item">
+              <Link style={{ textDecoration: 'none', color: '#0d0d0d' }} onClick={() => this.setState({ lgShow: true})}>
               Signup    
-              </Nav.Link>          
+              </Link>          
               </Nav.Item>
 
 

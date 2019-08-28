@@ -12,15 +12,8 @@ export default class Services {
 
   getLatestCurrency = () => this.service.get(`latest?base=GBP&symbols=USD,EUR,CNY,CHF,AUD`);
 
-  
-  // getHistoricalCurrency = () => this.service.get(`history?start_at=2016-06-23&end_at=2018-05-23&symbols=GBP`);
-
-
   getHistoricalCurrency = (updatedToday) => this.service.get(`history?start_at=2016-06-23&end_at=${updatedToday}&symbols=GBP`);
   
-
-
-  getConverterCurrency = () => this.service.get(`latest`)
 
 }
 

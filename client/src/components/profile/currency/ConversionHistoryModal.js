@@ -1,32 +1,29 @@
-//MODAL TEMPLATE
-
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Login from '../auth/Login'
-import "../../styles/nav-bar.css";
+import ConversionHistory from "./ConversionHistory";
 
 
 
-class LoginModal extends Component {
+class ConversionHistoryModal extends Component {
 
 render() {
     return (
   
         <Modal className="modal-auth"
         {...this.props}
-          size="sm"
+          size="xl"
         >
           <Modal.Header closeButton>
             <Modal.Title>
-              Login
+              Conversion History
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Login setUser={this.props.setUser}/>
+            <ConversionHistory />
           </Modal.Body>
         </Modal>
     )
 }
 }
   
-export default LoginModal
+export default ConversionHistoryModal

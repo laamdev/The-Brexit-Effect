@@ -1,24 +1,29 @@
 import React, { Component } from "react";
 import axios from "axios";
 import '../../../styles/converter.css';
+import Services from '../../../services/user.services'
+import { Button } from 'react-bootstrap'
 
 class Converter extends Component {
-    state = {
-        result: null,
-        fromCurrency: "USD",
-        toCurrency: "GBP",
-        amount: 1,
-        currencies: [],
-    };
+    constructor(props){
+        super(props)
+        this.state = {
+            result: null,
+            fromCurrency: "GBP",
+            toCurrency: "EUR",
+            amount: null,
+            currencies: [],
+        };
+        this.service= new Services()
+    }
+   
 
     // Initializes the currencies with values from the api
     componentDidMount() {
         axios
-            .get("https://api.exchangeratesapi.io/latest")
+            .get("https://api.exchangeratesapi.io/latest?base=GBP&symbols=USD,EUR,CNY,CHF,AUD")
             .then(response => {
-                // Initialized with 'EUR' because the base currency is 'EUR'
-                // and it is not included in the response
-                const currencyAr = ["EUR"]
+                const currencyAr = ["GBP"]
                 for (const key in response.data.rates) {
                     currencyAr.push(key)
                 }
@@ -29,44 +34,58 @@ class Converter extends Component {
             });
     }
 
-    // Event handler for the conversion
     convertHandler = () => {
-        if (this.state.fromCurrency !== this.state.toCurrency) {
+        if (this.state.fromCurrency !== this.state.toCurrency && this.state.amount > 0) {
             axios
-                .get(`http://api.openrates.io/latest?base=${this.state.fromCurrency}&symbols=${this.state.toCurrency}`)
+                .get(`https://api.exchangeratesapi.io/latest?base=${this.state.fromCurrency}&symbols=${this.state.toCurrency}`)
                 .then(response => {
                     const result = this.state.amount * (response.data.rates[this.state.toCurrency]);
-                    this.setState({ result: result.toFixed(5) })
+                    this.setState({ result: result.toFixed(3) })
+
                 })
                 .catch(err => {
                     console.log("Opps", err.message);
                 });
-        } else {
-            this.setState({ result: "You cant convert the same currency!" })
-        }
-    };
 
-    // Updates the states based on the dropdown that was changed
-    selectHandler = (event) => {
-        if (event.target.name === "from") {
-            this.setState({ fromCurrency: event.target.value })
-        }
-        if (event.target.name === "to") {
-            this.setState({ toCurrency: event.target.value })
+        } else {
+            this.setState({ result: "Enter valid amount / currency "})
+   
+            
         }
     }
 
+
+
+    selectHandler = (event) => {
+        if (event.target.name === "from") {
+            this.setState({ fromCurrency: event.target.value, result: null })
+        }
+        if (event.target.name === "to") {
+            this.setState({ toCurrency: event.target.value, result: null })
+        }
+    }
+
+    postConversion = () => {
+        this.services
+        .postConversion()
+        .then(response => this.setState({ currencies: response.data }))
+        .catch(err => console.log(err));
+    
+      }
+    
+
+    
     render() {
-        return (
+        return ( 
             <div className="Converter">
-                <h2><span>Currency </span> Converter <span role="img" aria-label="money">&#x1f4b5;</span> </h2>
                 <div className="Form">
                     <input
                         name="amount"
+                        placeholder="Enter amount"
                         type="text"
                         value={this.state.amount}
                         onChange={event =>
-                            this.setState({ amount: event.target.value })
+                            this.setState({ amount: event.target.value, result: null  })
                         }
                     />
                     <select
@@ -87,11 +106,30 @@ class Converter extends Component {
                             <option key={cur}>{cur}</option>
                         ))}
                     </select>
-                    <button onClick={this.convertHandler}>Convert</button>
+                    
+                    //!CONVERT BUTTON
+                    <Button onClick={this.convertHandler}>Convert</Button>
+
+                    //!SAVE BUTTON
+                    <Button onClick={()=> this.service.postConversion(this.state.result, this.state.fromCurrency, this.state.toCurrency, this.state.amount)} className="btn btn-dark btn-md">Save</Button>
+
+
+
                 </div>
+
+                <div>
+
                 {this.state.result && 
-                    <h3>{this.state.result}</h3>
+                
+                <h1>{this.state.result}</h1> 
+                
                 }
+                
+
+
+                </div>
+
+
             </div>
         );
     }

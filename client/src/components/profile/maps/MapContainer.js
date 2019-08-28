@@ -8,7 +8,7 @@ import PlaceInfo from "./PlaceInfo";
 
 import PLACES from "../../../data/places.json";
 
-const TOKEN = "pk.eyJ1IjoibGFhbmF5YW0zMzMiLCJhIjoiY2p6anJrMTl4MDZyZjNnc2F5ZWhscjVlMiJ9.uj60cln4FkSFnRx6XtsrfA"; // Set your mapbox token here
+const TOKEN = `${process.env.REACT_APP_MAPBOX}`; // Set your mapbox token here
 
 const navStyle = {
   position: "absolute",
@@ -69,7 +69,7 @@ export default class MapContainer extends Component {
     const { viewport } = this.state;
 
     return (
-      <MapGL {...viewport} width="80vw" height="60vh" mapStyle="mapbox://styles/laanayam333/cjzjsu5c307jx1cpfbmvzhvgr" onViewportChange={this._updateViewport} mapboxApiAccessToken={TOKEN}>
+      <MapGL {...viewport} width="90vw" height="50vh" mapStyle="mapbox://styles/laanayam333/cjzjsu5c307jx1cpfbmvzhvgr" onViewportChange={this._updateViewport} mapboxApiAccessToken={TOKEN}>
         {PLACES.map(this._renderPlaceMarker)}
 
         {this._renderPopup()}

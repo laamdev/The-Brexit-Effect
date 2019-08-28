@@ -18,6 +18,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 
 import Profile from "./components/profile/Profile";
 
+import ConversionHistory from "./components/profile/currency/ConversionHistory";
+
 import "./App.css";
 
 class App extends Component {
@@ -54,12 +56,15 @@ class App extends Component {
 
           <Switch>
             {/* <ProtectedRoute path="/profile" user={this.state.loggedInUser} component={Profile} /> */}
+           
+            <Route path="/" exact render={match => <Home {...match} setUser={this.setTheUser} />} />
 
             <Route path="/profile" exact render={match => <Profile {...match} setUser={this.setTheUser} 
             userInSession={this.state.loggedInUser} />} />
 
-            <Route path="/" exact render={match => <Home {...match} setUser={this.setTheUser} />} />
+            <Route path="/addConversion" exact component={Profile}/>
             
+            <Route path="/getAllConversions" exact component={ConversionHistory}/>
             <Route path="/dashboard" exact render={match => <Dashboard {...match} setUser={this.setTheUser} />} />
           </Switch>
         </>
@@ -72,7 +77,7 @@ class App extends Component {
           <Switch>
             {/* <ProtectedRoute path="/profile" user={this.state.loggedInUser} component={Profile} /> */}
 
-            <Route path="/" exact render={match => <Home {...match} setUser={this.setTheUser} />} />
+            <Route path="/" exact component={Home}render={match => <Home {...match} setUser={this.setTheUser} />} />
 
             <Route path="/login" exact render={match => <Login {...match} setUser={this.setTheUser} />} />
             

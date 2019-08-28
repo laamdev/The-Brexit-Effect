@@ -8,6 +8,6 @@ export default class Services {
   }
 
   //!ENDPOINTS FOR API CALLS
-  getLatestNews = () => this.service.get(`top-headlines?q=brexit&language=en&apiKey=041cff11d05448a3a8506f81a8893422`);
+  getLatestNews = () => this.service.get(`top-headlines?q=brexit&language=en&apiKey=${process.env.REACT_APP_NEWS}`);
 
 }

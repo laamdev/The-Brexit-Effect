@@ -79,7 +79,7 @@ class MainChart extends Component {
           scale={{ x: "time" }}
           containerComponent={<VictoryZoomContainer responsive={false} zoomDimension="x" zoomDomain={this.state.zoomDomain} onZoomDomainChange={this.handleZoom.bind(this)} />}
         >
-          <VictoryScatter style={{ data: { fill: "#c43a31" } }} size={7} data={this.state.res} />
+          {/* <VictoryScatter style={{ data: { fill: "#c43a31" } }} size={7} data={this.state.res} /> */}
 
           <VictoryLine
             style={{

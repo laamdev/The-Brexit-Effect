@@ -1,0 +1,170 @@
+import React, { Component } from 'react'
+
+import { Link } from 'react-router-dom';
+
+import MainModal from './MainModal'
+
+import Login from "../auth/Login"
+
+import Signup from "../auth/Signup"
+
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+ } from 'reactstrap';
+
+
+import AuthServices from '../../services/auth.services'
+
+
+class NavBarComponent extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.authServices = new AuthServices()
+
+        this.state = { 
+          isModalOpen: false,
+          modalTitle:"",
+          modalBody:"",
+          loggedInUser: null
+        }
+
+        this.toggle = this.toggle.bind(this)
+      }
+
+      toggle = (title, body) => {
+        this.setState({
+          isModalOpen: !this.state.modal,
+          modalTitle: title,
+          modalBody: body
+        });
+       };
+       
+    logout = () => {
+        this.authServices.logout()
+            .then(x => {
+                this.props.setUser(null)
+            })
+            .catch(err => console.log(err))
+    }
+
+
+
+    render() {
+
+        // const greetings = this.props.userInSession ? this.props.userInSession.data.username : 'invitado'
+        // const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null
+
+
+        if (this.props.userInSession) {
+
+            return (
+        <>
+          
+          <Navbar color="light" light expand="md">
+
+          <NavbarBrand tag={Link} to="/">The Brexit Effect</NavbarBrand>
+
+          <NavbarToggler onClick={this.toggle} />
+
+          <Collapse isOpen={this.state.isOpen} navbar>
+
+            <Nav className="ml-auto" navbar>
+
+              <NavItem>
+              <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
+              </NavItem>
+
+              <NavItem>
+              <NavLink tag={Link} to="/profile">Profile</NavLink>
+              </NavItem>
+
+              <NavItem>
+                <NavLink tag={Link} to="/" onClick={this.logout}>Logout</NavLink>
+              </NavItem>
+
+            </Nav>
+
+          </Collapse>
+
+          </Navbar>
+        </>
+
+
+            )
+
+        } else {
+            return (
+              <>
+          
+              <Navbar color="light" light expand="md">
+    
+              <NavbarBrand tag={Link} to="/">The Brexit Effect</NavbarBrand>
+    
+              <NavbarToggler onClick={this.toggle} />
+    
+              <Collapse isOpen={this.state.isOpen} navbar>
+    
+                <Nav className="ml-auto" navbar>
+
+
+              <NavItem>
+
+              <span
+  className="fLink"
+  onClick={e =>
+    this.toggle("Login", <Login setUser={this.setUser} />)
+  }
+  >   
+              Login</span>     
+      
+              </NavItem>
+
+              <NavItem>
+
+              <span
+  className="fLink"
+  onClick={e =>
+    this.toggle("Signup", <Signup setUser={this.setUser} />)
+  }
+  >   
+              Signup</span>  
+
+</NavItem>
+  <MainModal
+          type="basic"
+          toggle={this.toggle}
+          isModalOpen={this.state.isModalOpen}
+          modalTitle={this.state.modalTitle}
+          modalBody={this.state.modalBody}
+        />
+        
+    
+                </Nav>
+    
+              </Collapse>
+    
+              </Navbar>
+            </>
+    
+            )
+        }
+
+    }
+}
+export default NavBarComponent
+
+

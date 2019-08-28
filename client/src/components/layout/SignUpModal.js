@@ -9,17 +9,13 @@ class SignUpModal extends Component {
         <Modal
         {...this.props}
         size="large"
-        aria-labelledby="contained-modal-title-lg"
       >
           <Modal.Header closeButton>
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Large Modal
+            <Modal.Title>
+              Signup
             </Modal.Title>
           </Modal.Header>
           <Modal.Body><Signup setUser={this.props.setUser}/></Modal.Body>
-          <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
-        </Modal.Footer>
         </Modal>
     );
   }

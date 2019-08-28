@@ -1,26 +1,21 @@
 import React from 'react'
 import NewsTicker from "../home/news/NewsTicker"
 import DataBubble from "../home/currency/DataBubble"
-import '../../styles/data-bubble.css'
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
+import '../../styles/home.css'
+
 
 
 const Home = () => {
 
     return (
-        <>
-        <Container>
-            <Row>
-
-            <div className="dataBubble" >
+        <div className="home-container">
+            <div className="data-bubble" >
             <DataBubble />
             </div>
-            </Row>
-
-        </Container>
-            <NewsTicker />
-        </>
+        <NewsTicker />
+        </div>
     )
 }
 

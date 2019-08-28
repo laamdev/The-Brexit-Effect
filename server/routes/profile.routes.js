@@ -9,5 +9,4 @@ router.get("/profile/:id", (req, res) => {
     .then(theUser => res.json(theUser))
     .catch(err => console.log("Error", err));
 });
-
 module.exports = router;

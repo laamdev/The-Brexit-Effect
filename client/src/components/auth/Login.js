@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import AuthServices from '../../services/auth.services'
+import { Container } from 'react-bootstrap'
 
 class Login extends Component {
 
@@ -42,14 +43,13 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>Login</h1>
+            <Container>
                 <form onSubmit={this.handleFormSubmit}>
                     Username: <input name="username" type="text" value={this.state.username} onChange={this.handleInputChange} /> <br></br>
                     Password: <input name="password" type="password" value={this.state.password} onChange={this.handleInputChange} /> <br></br>
-                    <input type="submit" value="Login" />
+                    <input className="login-butt" type="submit" value="Submit" />
                 </form>
-            </div>
+            </Container>
 
         )
 }
