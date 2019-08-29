@@ -71,7 +71,8 @@ class Converter extends Component {
         .postConversion(this.state, this.props.userInSession)
         .then(response => {
             this.setState({ conversionList: response.data })
-        
+            
+            this.refreshConversionList();
 
             this.props.history.push("/profile")})
 
@@ -98,25 +99,28 @@ class Converter extends Component {
             .then(theNewConversion => {console.log(theNewConversion)})
       }
 
+      refreshConversionList = () => {
+        this.props.getConversionList();
+      }
+
 
     
     render() {
         return ( 
             <Container>
                 <Row >
-
-
-                        <div className="Converter">
-                            <form onSubmit={this.handleSubmit}>
-                                <input
-                                    name="amount"
-                                    placeholder="Enter amount"
-                                    type="number"
-                                    value={this.state.amount}
-                                    onChange={event =>
-                                        this.setState({ amount: event.target.value, result: null  })
-                                    }
-                                />
+                    <div className="Converter">
+                        <form onSubmit={this.handleSubmit} className="convert-container">
+                            <input
+                                name="amount"
+                                placeholder="Enter amount"
+                                type="number"
+                                value={this.state.amount}
+                                onChange={event =>
+                                    this.setState({ amount: event.target.value, result: null  })
+                                }
+                            />
+                            <div className="currencies-container">
                                 <select
                                     name="from"
                                     onChange={(event) => this.selectHandler(event)}
@@ -135,14 +139,14 @@ class Converter extends Component {
                                         <option key={cur}>{cur}</option>
                                     ))}
                                 </select>
-                                
-                                <Button onClick={this.convertHandler}>Convert</Button>
-
-                                <Button type="submit" onClick={()=> this.postConversion()} className="btn btn-dark btn-md">Save</Button>
-
-                </form>
                             </div>
+                            <div className="save-container">
+                                <Button onClick={this.convertHandler} className="btn btn-dark btn-md convert-button">Convert</Button>
 
+                                <Button type="submit" onClick={()=> this.postConversion()} className="btn btn-dark btn-md save-button">Save</Button>
+                            </div>
+                        </form>
+                    </div>
                 </Row>
 
                 <Row className="justify-content-center" style = {{paddingTop: 20}}>

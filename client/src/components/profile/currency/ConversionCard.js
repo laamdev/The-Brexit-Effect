@@ -1,47 +1,37 @@
 import React, { Component } from 'react'
 import Services from "../../../services/user.services";
-import { Button } from "react-bootstrap"
-
 
 class ConversionCard extends Component {
     constructor(props) {
       super(props);
       this.service = new Services();
     }
-  
 
-// onDelete = (id) => {
-//     this.service
-//     .deleteConversion(id)
-//     .then(console.log('hola'))
-//     .catch(err=>console.log('Error', err))
-//   }
+    deleteConversion = () => {
+      this.service.deleteConversion(this.props._id, this.props.user);
 
+      this.refreshConversionList();
+    }
+
+    refreshConversionList = () => {
+      this.props.getConversionList();
+    }
   
   render() {
   
     return (
-      <div className="col-md-4">
+      <article className="conversion-card">
+        <div>
+          <h5>{this.props.amount} {this.props.fromCurrency}</h5>
+          <a>Gets you</a>
+          <h5>{this.props.result} {this.props.toCurrency}</h5>
+        </div>
+        <h6 className="conversion-date">{this.props.createdAt.slice(0, 10)}</h6>
 
-            <article className="conversion-card">
-            <p>If you change </p>
-                <h5><b>{this.props.amount} {this.props.fromCurrency}</b></h5>
-                <hr></hr>
-                <p >on </p>
-                <h6><b>{this.props.createdAt.slice(0, 10)}</b></h6>
-                <hr></hr>
-                <p >you get </p>
-                <h5><b>{this.props.result} {this.props.toCurrency}</b></h5>
-
-                {/* <Button  onClick={this.onDelete(this.props._id)} >Delete</Button> */}
-                
-                <hr></hr>
-
-            </article>
-            </div>
-
+        <button className="delete-button" onClick={this.deleteConversion}></button>
+      </article>
     )
-}
+  }
 }
 
 export default ConversionCard

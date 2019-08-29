@@ -29,12 +29,9 @@ class Profile extends Component {
     .then(response => this.setState({ conversionList: response.data })
     )
     .catch(err => console.log(err))
-
   }
 
   render() {
-
-
     const greetings = this.props.userInSession ? this.props.userInSession.data.username : "invitado";
     const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null;
 
@@ -50,12 +47,9 @@ class Profile extends Component {
 
         <Row className = "converter" >
 
-            <Converter userInSession = {this.props.userInSession} />
+            <Converter userInSession = {this.props.userInSession} getConversionList={this.showList}/>
 
         </Row>
-
-
-
 
         <Row className="justify-content-center">
           <div className="map">
@@ -63,12 +57,11 @@ class Profile extends Component {
            </div>
         </Row>
 
-        <Row>
+        <div className="conversion-cards-container">
           
-          {this.state.conversionList && this.state.conversionList.map (conversion => <ConversionCard key={conversion._id} {...conversion} />)
+          {this.state.conversionList && this.state.conversionList.map (conversion => <ConversionCard getConversionList={this.showList} key={conversion._id} {...conversion} />)
 }
-         
-        </Row> 
+        </div> 
 
         </Container>
 

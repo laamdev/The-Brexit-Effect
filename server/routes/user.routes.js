@@ -23,12 +23,14 @@ router.get("/getAllConversions", (req, res) => {
 
     .catch(err => console.log("Error", err));
 });
-// router.post("/:id/deleteConversion", (req, res, next) => {
-//   const conversionId = req.params.id;
 
-//   Conversion.findByIdAndRemove(conversionId)
-//     .then(x => res.status(200))
-//     .catch(err => console.log("Error", err));
-// });
+router.post("/deleteConversion", (req, res, next) => {
+  const conversionId = req.body.conversion;
+  const userId = req.body.user;
+
+  Conversion.findByIdAndRemove(conversionId)
+    .then(x => res.status(200))
+    .catch(err => console.log("Error", err));
+});
 
 module.exports = router;
