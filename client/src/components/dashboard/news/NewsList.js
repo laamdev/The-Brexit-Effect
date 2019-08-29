@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import { Container } from 'react-bootstrap';
 
-import Carousel from 'react-bootstrap/Carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import NewsCard from "./NewsCard";
+import { Carousel } from 'react-responsive-carousel';
+
 import Services from "../../../services/news.services"
  
 class NewsList extends Component {
@@ -32,25 +32,31 @@ class NewsList extends Component {
 render() {
 
   return (
-    <Carousel fade="true">
+
+    <Carousel className="news-carousel" showStatus={false} >
+
     
     {this.state.news.map((article) => (
-    <Carousel.Item key={article._id} className="carousel-item">
-      <img 
-        src={article.urlToImage}key
-        alt="News Slide"
-        className = "news-slide-images"
-      />
-      <Carousel.Caption>
-        <h3>{article.title}</h3>
-        <p>{article.description}</p>
-        <a href={article.url}>Read More</a>
 
-      </Carousel.Caption>
-    </Carousel.Item>
+      <>
+
+        <h5 className="news-title">{article.title}</h5>      
+        <p className="legend">
+        {article.description}
+        <br></br>
+        <a href={article.url} target="_blank">Read More</a>
+        </p>
+        <img className="d-block w-100"
+        src={ article.urlToImage == "" || article.urlToImage == null  ? "https://cdn.urgente24.com/sites/default/files/2019-08/boris_4.jpg" : article.urlToImage }
+        alt="News Slide"/>
+      </>
+
+
                 ))}
 
   </Carousel>
+
+
   )
 }
 }

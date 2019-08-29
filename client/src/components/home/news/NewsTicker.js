@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Ticker from 'react-ticker'
 import Services from '../../../services/news.services'
 import NewsCardTicker from '../news/NewsCardTicker'
-import "../../../styles/ticker.css";
 
 class NewsTicker extends Component {
 
@@ -28,7 +27,7 @@ class NewsTicker extends Component {
         
                 <Ticker speed={5} mode="smooth"> 
                 {() => (
-                            <div className="d-flex text-center">
+                            <div className="ticker d-flex text-center">
                                 {this.state.tickers.map((tickers, idx) => <NewsCardTicker key={idx} {...tickers} />)}
                             </div>
                 )}

@@ -64,7 +64,8 @@ class App extends Component {
 
             <Route path="/addConversion" exact component={Profile}/>
             
-            <Route path="/getAllConversions" exact component={ConversionHistory}/>
+            <Route path="/getAllConversions" exact component={Profile}/>
+            
             <Route path="/dashboard" exact render={match => <Dashboard {...match} setUser={this.setTheUser} />} />
           </Switch>
         </>

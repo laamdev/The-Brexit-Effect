@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter, VictoryTooltip, VictoryArea} from "victory";
+import { VictoryChart, VictoryAxis, VictoryZoomContainer, VictoryLine, VictoryBrushContainer, VictoryScatter, VictoryTooltip, VictoryArea } from "victory";
 import Services from "../../../services/currency.services";
 
 
@@ -77,8 +77,9 @@ class MainChart extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chart">
         <VictoryChart
+
           width={1000}
           height={400}
           maxDomain={{ y: 1 }}
@@ -91,7 +92,7 @@ class MainChart extends Component {
 
           <VictoryArea
             style={{
-              data: { stroke: "tomato", strokeWidth: 2 }
+              data: { fill: "#D93E30" }
             }}
             data={this.state.res}
           />
@@ -143,10 +144,12 @@ class MainChart extends Component {
           <VictoryAxis tickValues={[new Date(2016, 1, 1), new Date(2017, 1, 1), new Date(2018, 1, 1), new Date(2019, 1, 1)]} tickFormat={x => new Date(x).getFullYear()} />
           <VictoryLine
             style={{
-              data: { stroke: "blue" }
+              data: { stroke: "#D93E30"}
             }}
             data={this.state.res}
           />
+
+
 
         </VictoryChart>
       </div>

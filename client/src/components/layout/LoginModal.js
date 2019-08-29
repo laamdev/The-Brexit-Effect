@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Login from '../auth/Login'
-import "../../styles/nav-bar.css";
 
 
 

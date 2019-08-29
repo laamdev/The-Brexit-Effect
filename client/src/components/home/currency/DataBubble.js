@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { VictoryLabel, VictoryPie, VictoryTooltip } from "victory";
 import Services from "../../../services/currency.services";
-import CustomFlyout from "./CustomFlyout"
 
 class DataBubble extends Component {
   constructor() {
@@ -24,14 +23,15 @@ class DataBubble extends Component {
           <VictoryPie 
 
             labelComponent={
-              <VictoryTooltip
-                 flyoutComponent={<CustomFlyout/>}
-                 ></VictoryTooltip>
-            }
+              <VictoryTooltip 
+              cornerRadius={0}
+              flyoutStyle={{fill: "white", size: "20"}}
+              pointerLength={0}
 
+
+              />}   
           
-          
-            colorScale={["#A6A6A6", "#595959", "#F2F2F2" ]}
+            colorScale={["#BFBFBF", "#8C8C8C", "#404040" ]}
             standalone={false}
             width={400}
             height={400}
@@ -56,7 +56,7 @@ class DataBubble extends Component {
             style={{
               
               labels: {
-                fontSize: 7, fill: "#0d0d0d", fontFamily: "Lexend Deca"
+                fontSize: 10, fill: "#0d0d0d", fontFamily: "Lexend Deca"
                 
               }
             }}
@@ -68,7 +68,7 @@ class DataBubble extends Component {
                   return [
                     {
                       target: "data",
-                      mutation: () => ({style: {fill: "gold", width: 30}})
+                      mutation: () => ({style: {fill: "#F24535", size: 30}})
                     }, {
                       target: "labels",
                       mutation: () => ({ active: true })
@@ -95,7 +95,7 @@ class DataBubble extends Component {
         
         />
 
-          <VictoryLabel textAnchor="middle" style={{ fontSize: 20, fill: "#0d0d0d", fontFamily: "Lexend Deca" }} x={200} y={200} text="The Brexit Effect" />
+          <VictoryLabel textAnchor="middle" style={{ fontSize: 60, fill: "#0d0d0d", fontFamily: "Lexend Deca" }} x={200} y={200} text="GBP" />
         </svg>
       );
     } else {

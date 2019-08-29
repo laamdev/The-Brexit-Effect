@@ -38,7 +38,6 @@ class Signup extends Component {
                     money: 0
                 })
                 this.props.setUser(theNewUser)
-                this.props.history.push('/')
             })
             .catch(err => console.log(err))
     }
@@ -66,9 +65,7 @@ class Signup extends Component {
 
                     Image: <input name="imageURL" id="input-img" type="file" onChange={this.handleFileUpload} /> <br></br>
 
-                    Money: <input name="money" type="number" value={this.state.money} onChange={this.handleInputChange} /> <br></br>
-
-                    
+                    Money: <input name="money" type="number" value={this.state.money} onChange={this.handleInputChange} /> <br></br>     
 
                     <input type="submit" value="Submit" />
                 </form>

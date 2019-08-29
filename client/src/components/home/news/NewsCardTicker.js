@@ -4,7 +4,7 @@ const NewsCardTicker = ({ title }) => {
   return (
   
     <p style={{
-      whiteSpace: "nowrap", margin: "0"}}>
+      whiteSpace: "nowrap", margin: "0" }}>
         
         &emsp;{title}&emsp;
 

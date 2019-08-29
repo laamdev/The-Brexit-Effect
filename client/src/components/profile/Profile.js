@@ -3,27 +3,40 @@ import MapContainer from "./maps/MapContainer";
 import AuthServices from "../../services/auth.services";
 import Converter from "./currency/Converter"
 import { Container, Row, Col }  from "react-bootstrap"
-
-import "../../styles/profile.css"
-import ConversionHistory from "./currency/ConversionHistory";
-import ConversionHistoryModal from "./currency/ConversionHistoryModal";
-
-
+// import ConversionHistory from "./currency/ConversionHistory";
+// import ConversionHistoryModal from "./currency/ConversionHistoryModal";
+import Services from "../../services/user.services"
+import ConversionCard from "./currency/ConversionCard"
 
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { lgShow: false }
+  constructor(props, context) {
+    super(props, context);
+    this.state = { conversionList:[] }
     this.authServices = new AuthServices();
+    this.services = new Services();
+
+
+  }
+
+  componentDidMount = () => {
+    this.showList()
+  } 
+
+  showList = () => {
+    this.services
+    .getAllConversions(this.props.userInSession)
+    .then(response => this.setState({ conversionList: response.data })
+    )
+    .catch(err => console.log(err))
+
   }
 
   render() {
 
-    let lgClose = () => this.setState({ lgShow: false });
 
-    // const greetings = this.props.userInSession ? this.props.userInSession.data.username : "invitado";
-    // const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null;
+    const greetings = this.props.userInSession ? this.props.userInSession.data.username : "invitado";
+    const profilePic = this.props.userInSession ? this.props.userInSession.data.imageURL : null;
 
       return (
         <>
@@ -35,25 +48,27 @@ class Profile extends Component {
 
 {/* capital={this.props.userInSession.data.money} */}
 
-        <Row className = "converter">
+        <Row className = "converter" >
 
-            <Col md={8}>
-            <Converter />
-            </Col>
-
-            <Col md={4}>
-            <button onClick={()=> this.setState({ lgShow: true})} className="btn btn-dark btn-md">Show Conversions</button>
-            </Col>
-
-            <ConversionHistoryModal show={this.state.lgShow} onHide={lgClose} setUser={this.props.setUser}/>
+            <Converter userInSession = {this.props.userInSession} />
 
         </Row>
 
-        <Row >
-          <MapContainer className="map" />
+
+
+
+        <Row className="justify-content-center">
+          <div className="map">
+            <MapContainer />
+           </div>
         </Row>
 
-
+        <Row>
+          
+          {this.state.conversionList && this.state.conversionList.map (conversion => <ConversionCard key={conversion._id} {...conversion} />)
+}
+         
+        </Row> 
 
         </Container>
 

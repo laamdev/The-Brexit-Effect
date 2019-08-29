@@ -10,12 +10,12 @@ export default class Services {
         })
     }
 
+    postConversion = (conversion, user) => {
+        console.log(conversion)
+        return this.service.post(`addConversion`, {conversion, user})}
+
+
     getAllConversions = () => this.service.get(`getAllConversions`)
-
-    postConversion = (result, fromCurrency, toCurrency, amount) => this.service.post(`addConversion`, {result, fromCurrency, toCurrency, amount})
-
-    deleteConversion = (_id) => this.service.post(`/:id/deleteConversion`, {_id})
-
 
 
 }

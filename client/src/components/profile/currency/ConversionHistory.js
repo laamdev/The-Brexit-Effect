@@ -1,53 +1,54 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
-import Services from "../../../services/user.services";
+// import Services from "../../../services/user.services";
 
-import ConversionCard from "../currency/ConversionCard";
+// import ConversionCard from "../currency/ConversionCard";
 
-
-class ConversionHistory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { conversionList: [] };
-    this.service = new Services();
-  }
-
-  componentDidMount = () => {
-    this.showList()
-  } 
-
-  showList = () => {
-    this.service
-    .getAllConversions()
-    .then(response => this.setState({ conversionList: response.data }))
-    .catch(err => console.log(err));
-
-  }
+// import { Container, Row, Col } from 'react-bootstrap'
 
 
-  render() {
+// class ConversionHistory extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.service = new Services();
+//   }
+
+
+
+
+//   render() {
   
-    return (
-      <>
+//     return (
+//       <>
       
 
-        <div className="container">
+//         <Container>
 
-        {this.state.conversionList.map((conversion) => (
+//           <Row>
 
-        <ConversionCard key={conversion._id} {...conversion}   />
+
+//         {this.props.conversionList.map((conversion) => (
         
-        )
+//         <Col>
 
-        )}
+//         <ConversionCard key={conversion._id} {...conversion}   />
+
+//         </Col>
+
+//         )
+
+//         )}
 
         
-        </div>
+// </Row>
 
-      </>
+
+//         </Container>
+
+//       </>
         
-    );
-  }
-}
+//     );
+//   }
+// }
 
-export default ConversionHistory;
+// export default ConversionHistory;

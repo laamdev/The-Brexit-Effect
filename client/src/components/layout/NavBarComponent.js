@@ -1,21 +1,12 @@
 import React, { Component } from 'react'
-
 import { Link } from 'react-router-dom'
-
 import LoginModal from './LoginModal'
-
 import SignUpModal from './SignUpModal'
-
 import { Navbar, Nav } from 'react-bootstrap';
-
 import AuthServices from '../../services/auth.services'
-
-import "../../styles/nav-bar.css";
 
 
 class NavBarComponent extends Component {
-
-
     constructor(props, context) {
         super(props, context)
 
@@ -50,7 +41,7 @@ class NavBarComponent extends Component {
           <div>
           <Navbar  variant="dark" expand="lg">
 
-          <Navbar.Brand style={{ textDecoration: 'none', color: '#0d0d0d' }} href="/">The Brexit Effect</Navbar.Brand>
+          <Navbar.Brand className="logo" style={{ textDecoration: 'none', color: '#0d0d0d' }} href="/">The Brexit Effect</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 

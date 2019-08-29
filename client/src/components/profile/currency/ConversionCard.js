@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Services from "../../../services/user.services";
+import { Button } from "react-bootstrap"
 
 
 class ConversionCard extends Component {
@@ -9,36 +10,36 @@ class ConversionCard extends Component {
     }
   
 
-onDelete = (id) => {
-    this.service
-    .deleteConversion(id)
-    .then(console.log('hola'))
-    .catch(err=>console.log('Error', err))
-  }
+// onDelete = (id) => {
+//     this.service
+//     .deleteConversion(id)
+//     .then(console.log('hola'))
+//     .catch(err=>console.log('Error', err))
+//   }
 
   
   render() {
   
     return (
-        
-        <div className="col-md-3">
+      <div className="col-md-4">
+
             <article className="conversion-card">
             <p>If you change </p>
-            <hr></hr>
-                <h5>{this.props.amount} {this.props.fromCurrency}</h5>
+                <h5><b>{this.props.amount} {this.props.fromCurrency}</b></h5>
                 <hr></hr>
                 <p >on </p>
-                <h6>{this.props.createdAt.slice(0, 10)}</h6>
+                <h6><b>{this.props.createdAt.slice(0, 10)}</b></h6>
                 <hr></hr>
                 <p >you get </p>
-                <h4> {this.props.result} {this.props.toCurrency}</h4>
+                <h5><b>{this.props.result} {this.props.toCurrency}</b></h5>
 
-                <button  onClick={this.onDelete(this.props._id)} className="btn btn-dark btn-md">Delete</button>
+                {/* <Button  onClick={this.onDelete(this.props._id)} >Delete</Button> */}
                 
                 <hr></hr>
 
             </article>
-        </div >
+            </div>
+
     )
 }
 }

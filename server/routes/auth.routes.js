@@ -8,7 +8,6 @@ const User = require("../models/User");
 
 authRoutes.post("/signup", (req, res, next) => {
   const { username, password, imageURL, money } = req.body;
-  console.log(req.file);
 
   console.log(username, password, imageURL, money);
 

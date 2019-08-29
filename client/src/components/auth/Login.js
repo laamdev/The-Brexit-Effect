@@ -34,7 +34,6 @@ class Login extends Component {
                 })
                 console.log(this.props)
                 this.props.setUser(theLoggedUser)
-                // this.props.history.push('/dashboard')
             })
             .catch(err => console.log(err.response.data.message))
     }

@@ -7,7 +7,7 @@ const UserSchema = new Schema(
     password: String,
     imageURL: String,
     money: Number,
-    conversionHistory: { type: Schema.Types.ObjectId, ref: "Conversions" }
+    conversionList: [{ type: Schema.Types.ObjectId, ref: "Conversion" }]
   },
   { timestamps: true }
 );

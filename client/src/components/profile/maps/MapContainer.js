@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import MapGL, { Marker, Popup, NavigationControl, GeolocateControl } from "react-map-gl";
+import MapGL, { Marker, Popup, GeolocateControl } from "react-map-gl";
 
 import ControlPanel from "./ControlPanel";
 import Pin from "./Pin";
@@ -35,7 +35,7 @@ export default class MapContainer extends Component {
         bearing: 0,
         pitch: 0,
         width: 0,
-        heigth: 0
+        heigth: 0,
       },
       popupInfo: null
     };
@@ -69,15 +69,12 @@ export default class MapContainer extends Component {
     const { viewport } = this.state;
 
     return (
-      <MapGL {...viewport} width="90vw" height="50vh" mapStyle="mapbox://styles/laanayam333/cjzjsu5c307jx1cpfbmvzhvgr" onViewportChange={this._updateViewport} mapboxApiAccessToken={TOKEN}>
+      <MapGL {...viewport} width="90vw" height="50vh" mapStyle="mapbox://styles/laanayam333/cjzvhd7um06e91cpb8ectr99f" onViewportChange={this._updateViewport} mapboxApiAccessToken={TOKEN}>
         {PLACES.map(this._renderPlaceMarker)}
 
         {this._renderPopup()}
 
-        <div className="nav" style={navStyle}>
-          <NavigationControl />
-        </div>
-
+    
         <ControlPanel containerComponent={this.props.containerComponent} />
 
         <GeolocateControl style={geolocateStyle} positionOptions={{ enableHighAccuracy: true }} trackUserLocation={true} />

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import '../../../styles/converter.css';
 import Services from '../../../services/user.services'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Col, Row } from 'react-bootstrap'
 
 class Converter extends Component {
     constructor(props){
@@ -13,8 +12,9 @@ class Converter extends Component {
             toCurrency: "EUR",
             amount: null,
             currencies: [],
+            conversionList: []
         };
-        this.service= new Services()
+        this.services = new Services()
     }
    
 
@@ -65,72 +65,95 @@ class Converter extends Component {
         }
     }
 
-    postConversion = () => {
+    postConversion = () => { 
+        console.log(this.props.userInSession)
         this.services
-        .postConversion()
-        .then(response => this.setState({ currencies: response.data }))
+        .postConversion(this.state, this.props.userInSession)
+        .then(response => {
+            this.setState({ conversionList: response.data })
+        
+
+            this.props.history.push("/profile")})
+
         .catch(err => console.log(err));
     
       }
-    
+
+      handleSubmit = e => {
+          e.preventDefault()
+          const { 
+            result,
+            fromCurrency,
+            toCurrency,
+            amount,
+            currencies} = this.state
+
+          this.services.postConversion( 
+            result,
+            fromCurrency,
+            toCurrency,
+            amount,
+            currencies)
+
+            .then(theNewConversion => {console.log(theNewConversion)})
+      }
+
 
     
     render() {
         return ( 
-            <div className="Converter">
-                <div className="Form">
-                    <input
-                        name="amount"
-                        placeholder="Enter amount"
-                        type="text"
-                        value={this.state.amount}
-                        onChange={event =>
-                            this.setState({ amount: event.target.value, result: null  })
-                        }
-                    />
-                    <select
-                        name="from"
-                        onChange={(event) => this.selectHandler(event)}
-                        value={this.state.fromCurrency}
-                    >
-                        {this.state.currencies.map(cur => (
-                            <option key={cur}>{cur}</option>
-                        ))}
-                    </select>
-                    <select
-                        name="to"
-                        onChange={(event) => this.selectHandler(event)}
-                        value={this.state.toCurrency}
-                    >
-                        {this.state.currencies.map(cur => (
-                            <option key={cur}>{cur}</option>
-                        ))}
-                    </select>
-                    
-                    //!CONVERT BUTTON
-                    <Button onClick={this.convertHandler}>Convert</Button>
-
-                    //!SAVE BUTTON
-                    <Button onClick={()=> this.service.postConversion(this.state.result, this.state.fromCurrency, this.state.toCurrency, this.state.amount)} className="btn btn-dark btn-md">Save</Button>
+            <Container>
+                <Row >
 
 
+                        <div className="Converter">
+                            <form onSubmit={this.handleSubmit}>
+                                <input
+                                    name="amount"
+                                    placeholder="Enter amount"
+                                    type="number"
+                                    value={this.state.amount}
+                                    onChange={event =>
+                                        this.setState({ amount: event.target.value, result: null  })
+                                    }
+                                />
+                                <select
+                                    name="from"
+                                    onChange={(event) => this.selectHandler(event)}
+                                    value={this.state.fromCurrency}
+                                >
+                                    {this.state.currencies.map(cur => (
+                                        <option key={cur}>{cur}</option>
+                                    ))}
+                                </select>
+                                <select
+                                    name="to"
+                                    onChange={(event) => this.selectHandler(event)}
+                                    value={this.state.toCurrency}
+                                >
+                                    {this.state.currencies.map(cur => (
+                                        <option key={cur}>{cur}</option>
+                                    ))}
+                                </select>
+                                
+                                <Button onClick={this.convertHandler}>Convert</Button>
 
-                </div>
+                                <Button type="submit" onClick={()=> this.postConversion()} className="btn btn-dark btn-md">Save</Button>
 
-                <div>
+                </form>
+                            </div>
 
-                {this.state.result && 
+                </Row>
+
+                <Row className="justify-content-center" style = {{paddingTop: 20}}>
+                    {this.state.result && <h3 className="result">{this.state.result}</h3>}
+                </Row>
+
                 
-                <h1>{this.state.result}</h1> 
-                
-                }
-                
 
 
-                </div>
+            </Container>
 
-
-            </div>
         );
     }
 }
