@@ -1,6 +1,6 @@
 # The Brexit Effect
 
-Click [here](https://the-brexit-effect.herokuapp.com/) to see the project in progress.
+Click [here](https://the-brexit-effect.herokuapp.com/) to see the project.
 
 ## Built With
 
